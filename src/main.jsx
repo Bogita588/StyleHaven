@@ -1,3 +1,4 @@
+// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -6,7 +7,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import App from './App';
 import store from './redux/store';
-import { lightTheme } from './styles/theme'; // Import the one you want to use
+import { lightTheme } from './styles/theme'; // You can toggle to darkTheme as needed
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
