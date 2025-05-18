@@ -1,14 +1,19 @@
+// src/pages/ProductDetails/ProductDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
+import { addToWishlist } from '../../redux/wishlistSlice';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './ProductDetails.css';
 import { Button, Typography, CircularProgress } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
+export default function ProductDetails() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +26,6 @@ export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
         setProduct(response.data);
 
         if (response.data?.category?.id) {
-          // Fetch related products from same category, exclude current product
           const relatedResponse = await axios.get(
             `https://api.escuelajs.co/api/v1/products?categoryId=${response.data.category.id}&limit=6`
           );
@@ -35,11 +39,19 @@ export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
         setLoading(false);
       }
     };
+
     fetchProduct();
   }, [id]);
 
-  if (loading) return <div className="loading"><CircularProgress /></div>;
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
+  const handleAddToWishlist = () => {
+    dispatch(addToWishlist(product));
+  };
+
+  if (loading) return <div className="loading"><CircularProgress /></div>;
   if (!product) return <div className="error">Product not found.</div>;
 
   return (
@@ -73,7 +85,7 @@ export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
               variant="contained"
               color="primary"
               startIcon={<ShoppingCartIcon />}
-              onClick={() => onAddToCart(product)}
+              onClick={handleAddToCart}
               size="large"
             >
               Add to Cart
@@ -83,7 +95,7 @@ export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
               variant="outlined"
               color="secondary"
               startIcon={<FavoriteBorderIcon />}
-              onClick={() => onAddToWishlist(product)}
+              onClick={handleAddToWishlist}
               size="large"
               sx={{ ml: 2 }}
             >
@@ -115,8 +127,8 @@ export default function ProductDetails({ onAddToCart, onAddToWishlist }) {
               <ProductCard
                 key={prod.id}
                 product={prod}
-                onAddToCart={onAddToCart}
-                onAddToWishlist={onAddToWishlist}
+                onAddToCart={() => dispatch(addToCart(prod))}
+                onAddToWishlist={() => dispatch(addToWishlist(prod))}
               />
             ))}
           </div>
