@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Badge, IconButton, InputBase } from '@mui/material';
 import { FavoriteBorder, ShoppingCartOutlined, PersonOutline, Menu, Close } from '@mui/icons-material';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+
+  // ✅ Get item counts from Redux store
+  const cartCount = useSelector((state) => state.cart.items.length);
+  const wishlistCount = useSelector((state) => state.wishlist.items.length);
 
   return (
     <header className="header">
@@ -44,20 +48,21 @@ const Header = () => {
         {/* Icons */}
         <div className="header__icons">
           <IconButton component={Link} to="/wishlist">
-            <Badge badgeContent={2} color="secondary">
+            <Badge badgeContent={wishlistCount} color="secondary">
               <FavoriteBorder />
             </Badge>
           </IconButton>
+
           <IconButton component={Link} to="/cart">
-            <Badge badgeContent={3} color="primary">
+            <Badge badgeContent={cartCount} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </IconButton>
+
           <IconButton component={Link} to="/profile">
             <PersonOutline />
           </IconButton>
         </div>
-
       </div>
     </header>
   );
