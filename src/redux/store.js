@@ -1,15 +1,18 @@
+// src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import productsReducer from './productSlice';
+
+import productReducer from './productSlice';
 import cartReducer from './cartSlice';
-// Add more slices as needed
+import wishlistReducer from './wishlistSlice';
+import adminReducer from './adminSlice';
 
 const store = configureStore({
   reducer: {
-    products: productsReducer,
+    products: productReducer,
     cart: cartReducer,
-    // user: userReducer, etc.
+    wishlist: wishlistReducer,
+    admin: adminReducer,
   },
-  // Optional: Add middleware or devTools
 });
 
 export default store;

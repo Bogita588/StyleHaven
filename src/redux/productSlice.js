@@ -1,45 +1,43 @@
 // src/redux/productSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-// Async thunk to fetch products with validation
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async () => {
-    const response = await axios.get('https://api.escuelajs.co/api/v1/products');
-    const data = response.data;
+// Async thunk to fetch products
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+  const res = await fetch('https://api.escuelajs.co/api/v1/products');
+  const data = await res.json();
 
-    // Filter out invalid or incomplete products
-    const validProducts = data.filter(
-      (product) =>
-        product.title &&
-        product.price &&
-        product.images &&
-        product.images.length > 0 &&
-        product.images[0].startsWith('http')
-    );
+  // Clean up invalid product data
+  const validProducts = data.filter(
+    (product) =>
+      product.title &&
+      product.price &&
+      product.images &&
+      product.images.length > 0 &&
+      product.images[0].startsWith('http')
+  );
 
-    return validProducts;
-  }
-);
+  return validProducts;
+});
 
 const productSlice = createSlice({
   name: 'products',
   initialState: {
     items: [],
-    status: 'idle',
+    status: 'idle', // idle | loading | succeeded | failed
     error: null,
   },
-  reducers: {},
+  reducers: {
+    // Add reducers if needed
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading';
+        state.error = null;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.status = 'succeeded';
         state.items = action.payload;
+        state.status = 'succeeded';
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';
