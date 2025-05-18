@@ -1,0 +1,10 @@
+:root {
+  --primary-color: #1976d2;          /* MUI default primary */
+  --secondary-color: #f50057;        /* MUI default secondary */
+  --secondary-hover-color: #c51162;
+  --button-bg: #e3f2fd;
+  --button-hover-bg: #bbdefb;
+  --card-bg: #fff;
+  --text-primary: #222;
+  --border-color: #eee;
+}

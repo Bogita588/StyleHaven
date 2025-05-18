@@ -1,0 +1,132 @@
+/* src/pages/ProductDetails/ProductDetails.css */
+
+.product-details-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-primary);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.product-details {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.image-section {
+  flex: 1 1 400px;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  object-fit: contain;
+}
+
+.info-section {
+  flex: 1 1 400px;
+  min-width: 280px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-title {
+  font-weight: 700;
+}
+
+.product-price {
+  font-weight: 600;
+}
+
+.product-description {
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #555;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.additional-info {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.related-products-section {
+  margin-top: 50px;
+}
+
+.related-products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* Make sure ProductCard inside here looks good on small screens */
+@media (max-width: 480px) {
+  .related-products-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .image-section, .info-section {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .action-buttons button {
+    width: 100% !important;
+  }
+}

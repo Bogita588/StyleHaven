@@ -1,0 +1,110 @@
+/* src/components/ProductCard/ProductCard.css */
+
+/* Root card styles */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: var(--card-bg, #fff);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.product-card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Content wrapper */
+.product-card__content {
+  padding: 1rem 1rem 0.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title */
+.product-card__title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary, #222);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Price */
+.product-card__price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary-color, #1976d2);
+  margin-top: auto;
+}
+
+/* Actions (buttons) */
+.product-card__actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 1rem;
+  gap: 0.5rem;
+  border-top: 1px solid var(--border-color, #eee);
+}
+
+/* Add to Cart Button */
+.product-card__actions button {
+  flex-grow: 1;
+  font-weight: 600;
+  text-transform: none;
+  color: var(--primary-color, #1976d2);
+  background-color: var(--button-bg, #e3f2fd);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.product-card__actions button:hover {
+  background-color: var(--button-hover-bg, #bbdefb);
+}
+
+/* Wishlist Icon Button */
+.product-card__actions .MuiIconButton-root {
+  color: var(--secondary-color, #f50057);
+  transition: color 0.3s ease;
+}
+
+.product-card__actions .MuiIconButton-root:hover {
+  color: var(--secondary-hover-color, #c51162);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .product-card {
+    max-width: 100%;
+  }
+
+  .product-card__image {
+    height: 180px;
+  }
+
+  .product-card__title {
+    font-size: 0.9rem;
+  }
+
+  .product-card__price {
+    font-size: 1.1rem;
+  }
+}

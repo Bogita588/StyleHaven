@@ -1,0 +1,133 @@
+/* Header container */
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Inner content flex container */
+.header__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo styling */
+.header__logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.header__logo a span {
+  font-weight: 400;
+  color: #333;
+}
+
+/* Nav links container */
+.header__nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header__nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.header__nav a:hover {
+  color: #0077ff;
+}
+
+/* Search bar */
+.header__search {
+  flex-grow: 1;
+  max-width: 300px;
+  margin: 0 1rem;
+}
+
+.header__search input {
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.header__search input:focus {
+  border-color: #0077ff;
+}
+
+/* Icons container */
+.header__icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+
+.header__menu-icon {
+  display: none;
+  color: #0077ff;
+  cursor: pointer;
+}
+
+
+/* Responsive styles for mobile */
+@media screen and (max-width: 768px) {
+  /* Show hamburger icon */
+  .header__menu-icon {
+    display: block;
+  }
+
+  /* Hide nav links by default */
+  .header__nav {
+    position: fixed;
+    top: 60px; /* height of header */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Show nav when menu is open */
+  .header__nav.open {
+    max-height: 300px; /* enough for all menu items */
+  }
+
+  /* Nav links bigger on mobile */
+  .header__nav a {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+  }
+
+  /* Hide search bar on small screens */
+  .header__search {
+    display: none;
+  }
+
+  /* Hide icons container on small screens */
+  .header__icons {
+    display: none;
+  }
+}
