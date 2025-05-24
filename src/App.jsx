@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
 import Cart from './pages/Cart/Cart';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import Wishlist from './pages/Wishlist/Wishlist';
 import ProductDetails from './pages/ProductDetails/ProductDetails'; // import the new page
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/product/:id" element={<ProductDetails onAddToCart={handleAddToCart} onAddToWishlist={handleAddToWishlist} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </>
   );

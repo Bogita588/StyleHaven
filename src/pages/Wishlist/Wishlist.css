@@ -1,39 +1,140 @@
+.wishlist-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
 .wishlist-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.wishlist-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .clear-btn {
   background-color: #d9534f;
   color: white;
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .clear-btn:hover {
   background-color: #c9302c;
 }
 
-.wishlist-actions {
-  margin-top: 0.5rem;
+.wishlist-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.wishlist-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.wishlist-card img {
+  max-width: 100%;
+  height: 180px;
+  object-fit: contain;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.wishlist-card h4 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.price {
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 0.8rem;
+}
+
+.wishlist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
 }
 
-.remove-btn {
-  background-color: #eee;
-  color: #333;
+.view-btn,
+.remove-btn,
+.add-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
   border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-btn {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.view-btn:hover {
+  background-color: #0056b3;
+}
+
+.remove-btn {
+  background-color: #f44336;
+  color: white;
 }
 
 .remove-btn:hover {
-  background-color: #ccc;
+  background-color: #d32f2f;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+@media screen and (max-width: 600px) {
+  .wishlist-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .clear-btn {
+    align-self: flex-end;
+    width: auto;
+  }
+
+  .view-btn {
+    display: none;
+  }
+
+  .add-btn {
+    display: inline-block;
+  }
 }
