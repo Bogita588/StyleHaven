@@ -3,15 +3,21 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Badge, IconButton, InputBase } from '@mui/material';
-import { FavoriteBorder, ShoppingCartOutlined, PersonOutline, Menu, Close } from '@mui/icons-material';
+import {
+  FavoriteBorder,
+  ShoppingCartOutlined,
+  PersonOutline,
+  Menu,
+  Close,
+} from '@mui/icons-material';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-  // ✅ Get item counts from Redux store
-  const cartCount = useSelector((state) => state.cart.items.length);
+  // ✅ Grab wishlist and cart item counts from Redux
   const wishlistCount = useSelector((state) => state.wishlist.items.length);
+  const cartCount = useSelector((state) => state.cart.items.length);
 
   return (
     <header className="header">
@@ -19,10 +25,12 @@ const Header = () => {
 
         {/* Logo */}
         <div className="header__logo">
-          <Link to="/">Style<span>Haven</span></Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Style<span>Haven</span>
+          </Link>
         </div>
 
-        {/* Hamburger Menu Icon for Mobile */}
+        {/* Mobile Hamburger Icon */}
         <IconButton
           className="header__menu-icon"
           onClick={toggleMenu}
@@ -32,7 +40,7 @@ const Header = () => {
           {menuOpen ? <Close /> : <Menu />}
         </IconButton>
 
-        {/* Navigation */}
+        {/* Nav Links */}
         <nav className={`header__nav ${menuOpen ? 'open' : ''}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
@@ -47,19 +55,31 @@ const Header = () => {
 
         {/* Icons */}
         <div className="header__icons">
-          <IconButton component={Link} to="/wishlist">
+          <IconButton
+            component={Link}
+            to="/wishlist"
+            onClick={() => setMenuOpen(false)}
+          >
             <Badge badgeContent={wishlistCount} color="secondary">
               <FavoriteBorder />
             </Badge>
           </IconButton>
 
-          <IconButton component={Link} to="/cart">
+          <IconButton
+            component={Link}
+            to="/cart"
+            onClick={() => setMenuOpen(false)}
+          >
             <Badge badgeContent={cartCount} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </IconButton>
 
-          <IconButton component={Link} to="/profile">
+          <IconButton
+            component={Link}
+            to="/profile"
+            onClick={() => setMenuOpen(false)}
+          >
             <PersonOutline />
           </IconButton>
         </div>
